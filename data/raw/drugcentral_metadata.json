@@ -1,0 +1,8 @@
+{
+  "source_id": "drugcentral",
+  "source_url": "https://drugcentral.org/download",
+  "acquired_date": "2026-08-13",
+  "local_filename": "structures.smiles.tsv",
+  "sha256": "5b81423a2ec1e2766e9666ec4a172d5a5b47045ea2cc032d1ba06085956bc1fc",
+  "notes": "DrugCentral structures.smiles.tsv. Downloaded from the DrugCentral download page. Tab-separated file containing SMILES, InChI, InChIKey, DrugCentral ID, INN, and CAS registry number. Source page lists DrugCentral 2023 data. License/access information should be verified from the source terms before publication."
+}

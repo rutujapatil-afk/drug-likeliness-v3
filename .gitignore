@@ -44,10 +44,15 @@ Thumbs.db
 # Research data
 # ==============================
 
-data/raw/
-data/interim/
-data/processed/
-data/external/
+# Ignore raw datasets, but keep provenance metadata
+data/raw/*
+!data/raw/
+!data/raw/drugcentral_metadata.json
+
+# Ignore generated/intermediate data
+data/interim/*
+data/processed/*
+data/external/*
 
 # ==============================
 # Generated results
@@ -63,27 +68,10 @@ results/tables/
 
 *.log
 
-# Python
-__pycache__/
-*.py[cod]
-
-# Virtual environment
-.venv/
-
+# ==============================
 # Test/cache
+# ==============================
+
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# Data
-data/raw/*
-data/interim/*
-data/processed/*
-data/external/*
-
-# Local environment files
-.env
-.env.*
-
-# Jupyter
-.ipynb_checkpoints/
