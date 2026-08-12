@@ -6,6 +6,11 @@ from .standardization import canonicalize_smiles
 from .validation import is_valid_smiles
 from .qc import DatasetQCReport, generate_qc_report
 from .config import load_yaml_config
+from .overlap import (
+    find_conflicting_labels,
+    find_cross_dataset_overlap,
+    find_duplicate_molecules,
+)
 
 __all__ = [
     "MolecularRecord",
@@ -17,4 +22,8 @@ __all__ = [
     "process_molecular_dataframe",
     "DatasetQCReport",
     "generate_qc_report",
+    "load_yaml_config",
+    "find_duplicate_molecules",
+    "find_cross_dataset_overlap",
+    "find_conflicting_labels",
 ]

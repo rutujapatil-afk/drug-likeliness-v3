@@ -7,8 +7,15 @@ target:
   type: binary
 
 classes:
-  positive: 1
-  negative: 0
+  positive:
+    value: 1
+    name: drug_reference
+
+  negative:
+    value: 0
+    name: non_drug_reference
+
+  negative_source: to_be_defined
 
 molecular_representation:
   input: smiles
@@ -29,3 +36,8 @@ splitting:
 
 data_leakage:
   prevent_cross_partition_information: true
+
+research_question:
+  type: structure_based_binary_classification
+  biological_activity_prediction: false
+  clinical_approval_prediction: false
