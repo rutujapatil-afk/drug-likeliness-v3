@@ -21,7 +21,7 @@ def test_load_molecular_csv():
 
     assert isinstance(dataframe, pd.DataFrame)
     assert list(dataframe.columns) == ["source_id", "smiles"]
-    assert len(dataframe) == 5
+    assert len(dataframe) == 6
 
 
 def test_load_molecular_csv_requires_columns(tmp_path):
@@ -42,7 +42,7 @@ def test_process_molecular_dataframe():
 
     processed = process_molecular_dataframe(dataframe)
 
-    assert len(processed) == 5
+    assert len(processed) == 6
 
     assert list(processed.columns) == [
         "source_id",
