@@ -10,12 +10,17 @@ classes:
   positive:
     value: 1
     name: drug_reference
+    source: drugcentral
 
   negative:
     value: 0
     name: non_drug_reference
+    source: to_be_defined
 
-  negative_source: to_be_defined
+research_question:
+  type: structure_based_binary_classification
+  biological_activity_prediction: false
+  clinical_approval_prediction: false
 
 molecular_representation:
   input: smiles
@@ -36,8 +41,3 @@ splitting:
 
 data_leakage:
   prevent_cross_partition_information: true
-
-research_question:
-  type: structure_based_binary_classification
-  biological_activity_prediction: false
-  clinical_approval_prediction: false

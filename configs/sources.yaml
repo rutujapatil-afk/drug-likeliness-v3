@@ -1,0 +1,61 @@
+sources:
+
+  - id: drugcentral
+    name: DrugCentral
+    role: positive_reference
+    source_type: drug_database
+
+    url: https://drugcentral.org/download
+
+    license:
+      type: Creative Commons
+      verified: true
+
+    structure_fields:
+      smiles: true
+      inchi: true
+
+    identifiers:
+      drugcentral_id: true
+
+    label:
+      type: reference_membership
+      value: 1
+      meaning: drug_reference
+
+    download:
+      status: pending
+
+    notes:
+      - "Used as the initial positive/reference drug source."
+      - "Exact downloaded version must be recorded."
+      - "Original source structures must be preserved."
+
+  - id: negative_reference_pending
+    name: Pending negative reference dataset
+    role: negative_reference
+    source_type: to_be_defined
+
+    url: null
+
+    license:
+      type: to_be_defined
+      verified: false
+
+    structure_fields:
+      smiles: to_be_defined
+
+    identifiers:
+      source_id: to_be_defined
+
+    label:
+      type: reference_membership
+      value: 0
+      meaning: non_drug_reference
+
+    download:
+      status: not_selected
+
+    notes:
+      - "Negative source must be selected before data acquisition."
+      - "Membership must not be defined solely by model features."
