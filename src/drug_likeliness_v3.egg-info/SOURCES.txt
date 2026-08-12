@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/drug_likeliness_v3.egg-info/PKG-INFO
+src/drug_likeliness_v3.egg-info/SOURCES.txt
+src/drug_likeliness_v3.egg-info/dependency_links.txt
+src/drug_likeliness_v3.egg-info/top_level.txt
+src/druglikeness/__init__.py
+src/druglikeness/molecules.py
+tests/test_rdkit.py
