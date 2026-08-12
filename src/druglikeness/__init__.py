@@ -11,6 +11,11 @@ from .overlap import (
     find_cross_dataset_overlap,
     find_duplicate_molecules,
 )
+from .acquisition import calculate_sha256, download_file
+from .provenance import (
+    DatasetMetadata,
+    save_dataset_metadata,
+)
 
 __all__ = [
     "MolecularRecord",
@@ -26,4 +31,8 @@ __all__ = [
     "find_duplicate_molecules",
     "find_cross_dataset_overlap",
     "find_conflicting_labels",
+    "calculate_sha256",
+    "download_file",
+    "DatasetMetadata",
+    "save_dataset_metadata",
 ]

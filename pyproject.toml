@@ -8,6 +8,13 @@ version = "0.1.0"
 description = "Reproducible drug-likeness research pipeline"
 requires-python = ">=3.13,<3.14"
 
+dependencies = [
+    "pandas",
+    "pyyaml",
+    "rdkit",
+    "requests",
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
