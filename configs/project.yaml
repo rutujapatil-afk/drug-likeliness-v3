@@ -1,0 +1,16 @@
+project:
+  name: "drug-likeliness-v3"
+  version: "0.1.0"
+
+environment:
+  python: "3.13"
+
+paths:
+  raw_data: "data/raw"
+  interim_data: "data/interim"
+  processed_data: "data/processed"
+  external_data: "data/external"
+
+  figures: "results/figures"
+  tables: "results/tables"
+  models: "results/models"
