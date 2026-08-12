@@ -1,0 +1,6 @@
+source_id,smiles
+mol-001,OCC
+mol-002,CC(=O)O
+mol-003,C1CCCCC1
+mol-004,this-is-invalid
+mol-005, CCO
