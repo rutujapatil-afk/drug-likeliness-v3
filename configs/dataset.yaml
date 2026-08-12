@@ -1,0 +1,31 @@
+project:
+  name: drug-likeliness-v3
+  task: binary_classification
+
+target:
+  name: drug_likeness
+  type: binary
+
+classes:
+  positive: 1
+  negative: 0
+
+molecular_representation:
+  input: smiles
+  standardized: canonical_smiles
+  toolkit: rdkit
+
+provenance:
+  preserve_original_smiles: true
+  preserve_source_id: true
+  preserve_source_dataset: true
+
+duplicates:
+  identity_field: canonical_smiles
+  automatic_label_resolution: false
+
+splitting:
+  strategy: to_be_defined
+
+data_leakage:
+  prevent_cross_partition_information: true

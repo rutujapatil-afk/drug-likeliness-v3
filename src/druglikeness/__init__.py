@@ -5,6 +5,7 @@ from .records import MolecularRecord
 from .standardization import canonicalize_smiles
 from .validation import is_valid_smiles
 from .qc import DatasetQCReport, generate_qc_report
+from .config import load_yaml_config
 
 __all__ = [
     "MolecularRecord",
