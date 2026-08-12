@@ -6,6 +6,7 @@ from druglikeness.drugcentral import (
     EXPECTED_COLUMNS,
     load_drugcentral,
     process_drugcentral,
+    summarize_drugcentral,
 )
 
 
@@ -59,3 +60,18 @@ def test_invalid_smiles_is_retained():
     assert invalid_record.canonical_smiles is None
     assert invalid_record.valid is False
     assert invalid_record.standardization_status == "invalid_smiles"
+
+def test_summarize_drugcentral():
+    dataframe = load_drugcentral(FIXTURE_PATH)
+
+    records = process_drugcentral(dataframe)
+
+    summary = summarize_drugcentral(records)
+
+    assert summary["source"] == "DrugCentral"
+    assert summary["records"] == 3
+    assert summary["valid_smiles"] == 2
+    assert summary["invalid_smiles"] == 1
+    assert summary["canonical_smiles"] == 2
+    assert summary["unique_canonical_smiles"] == 2
+    assert summary["duplicate_canonical_smiles"] == 0
