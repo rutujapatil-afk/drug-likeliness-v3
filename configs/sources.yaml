@@ -32,31 +32,39 @@ sources:
       - "Local file: data/raw/structures.smiles.tsv"
       - "Provenance metadata: data/raw/drugcentral_metadata.json"
 
-  - id: negative_reference_pending
-    name: Pending negative reference dataset
+  - id: chebi_negative_reference
+    name: ChEBI negative reference
     role: negative_reference
-    source_type: to_be_defined
+    source_type: chemical_ontology
 
-    url: null
+    url: https://www.ebi.ac.uk/chebi/downloads
 
     license:
-      type: to_be_defined
-      verified: false
+      type: Creative Commons Attribution 4.0 International
+      verified: true
 
     structure_fields:
-      smiles: to_be_defined
+      smiles: true
+      inchi: true
+      inchikey: true
 
     identifiers:
-      source_id: to_be_defined
+      chebi_id: true
 
     label:
       type: reference_membership
       value: 0
       meaning: non_drug_reference
 
+    inclusion_rule:
+      - "ChEBI compound has a valid molecular structure."
+      - "ChEBI compound has no drug-role annotation."
+      - "ChEBI compound does not overlap DrugCentral by canonical SMILES."
+
     download:
-      status: not_selected
+      status: pending
 
     notes:
-      - "Negative source must be selected before data acquisition."
-      - "Membership must not be defined solely by model features."
+      - "Negative reference source selected for the binary structure-based classification task."
+      - "Negative membership is source-defined and is not equivalent to proof of non-drug status."
+      - "DrugCentral structural overlap must be excluded before labeling."
