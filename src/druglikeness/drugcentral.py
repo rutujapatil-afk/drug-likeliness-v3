@@ -1,11 +1,13 @@
+from __future__ import annotations
+
 from pathlib import Path
 
 import pandas as pd
 from rdkit import Chem
 
 from .molecules import smiles_to_molecule
+from .processing import process_molecular_record
 from .records import MolecularRecord
-
 
 EXPECTED_COLUMNS = [
     "SMILES",
@@ -17,8 +19,21 @@ EXPECTED_COLUMNS = [
 ]
 
 
-def load_drugcentral(path: str | Path) -> pd.DataFrame:
-    """Load a DrugCentral structures TSV file."""
+def load_drugcentral(
+    path: str | Path,
+) -> pd.DataFrame:
+    """Load a DrugCentral structures TSV file.
+
+    Parameters
+    ----------
+    path:
+        Path to the DrugCentral structures.smiles.tsv file.
+
+    Returns
+    -------
+    pandas.DataFrame
+        DrugCentral records containing the expected columns.
+    """
     path = Path(path)
 
     dataframe = pd.read_csv(
@@ -52,53 +67,29 @@ def load_drugcentral(path: str | Path) -> pd.DataFrame:
 def process_drugcentral(
     dataframe: pd.DataFrame,
 ) -> list[MolecularRecord]:
-    """Convert DrugCentral records to the project molecular record model."""
+    """Convert DrugCentral records to project molecular records.
+
+    DrugCentral-specific metadata is used to identify each source
+    record, while molecular validation and standardization are
+    delegated to the project's common processing pipeline.
+    """
     records: list[MolecularRecord] = []
 
     for row in dataframe.itertuples(index=False):
-        smiles = str(row.SMILES)
-
-        molecule = smiles_to_molecule(smiles)
-
-        if molecule is None:
-            records.append(
-                MolecularRecord(
-                    source_id=str(row.ID),
-                    original_smiles=smiles,
-                    canonical_smiles=None,
-                    valid=False,
-                    standardization_status="invalid_smiles",
-                )
-            )
-            continue
-
-        canonical_smiles = molecule_to_canonical_smiles(molecule)
-
-        records.append(
-            MolecularRecord(
-                source_id=str(row.ID),
-                original_smiles=smiles,
-                canonical_smiles=canonical_smiles,
-                valid=True,
-                standardization_status="standardized",
-            )
+        record = process_molecular_record(
+            source_id=str(row.ID),
+            original_smiles=str(row.SMILES),
         )
+
+        records.append(record)
 
     return records
 
-
-def molecule_to_canonical_smiles(molecule) -> str:
-    """Convert an RDKit molecule to canonical SMILES."""
-    return Chem.MolToSmiles(
-        molecule,
-        canonical=True,
-    )
 
 def summarize_drugcentral(
     records: list[MolecularRecord],
 ) -> dict[str, int | str]:
     """Summarize processed DrugCentral molecular records."""
-
     total_records = len(records)
 
     valid_records = sum(
