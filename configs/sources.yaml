@@ -6,7 +6,6 @@ sources:
     source_type: drug_database
 
     url: https://drugcentral.org/download
-
     license:
       type: Creative Commons
       verified: true
@@ -24,12 +23,14 @@ sources:
       meaning: drug_reference
 
     download:
-      status: pending
+      status: acquired
 
     notes:
       - "Used as the initial positive/reference drug source."
       - "Exact downloaded version must be recorded."
       - "Original source structures must be preserved."
+      - "Local file: data/raw/structures.smiles.tsv"
+      - "Provenance metadata: data/raw/drugcentral_metadata.json"
 
   - id: negative_reference_pending
     name: Pending negative reference dataset
