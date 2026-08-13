@@ -1,0 +1,10 @@
+{
+  "source_id": "chebi",
+  "source_url": "https://ftp.ebi.ac.uk/pub/databases/chebi/SDF/chebi.sdf.gz",
+  "acquired_date": "2026-08-13",
+  "source_version": "ChEBI Release 253",
+  "local_filename": "chebi.sdf.gz",
+  "sha256": "87196c48901c620fa70837f3fb518a255d9a2f7a3f17244b0abb33d73d819006",
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "notes": "ChEBI complete SDF structure dump. Official ChEBI SDF directory lists this file as chebi.sdf.gz, updated 2026-07-07. Contains ChEBI chemical structure records including SMILES, InChI, InChIKey and related chemical metadata. Downloaded manually because direct EBI FTP HTTPS access was unavailable from the local environment."
+}

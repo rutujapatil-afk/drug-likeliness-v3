@@ -46,8 +46,8 @@ Thumbs.db
 
 # Ignore raw datasets, but keep provenance metadata
 data/raw/*
-!data/raw/
 !data/raw/drugcentral_metadata.json
+!data/raw/chebi_metadata.json
 
 # Ignore generated/intermediate data
 data/interim/*
