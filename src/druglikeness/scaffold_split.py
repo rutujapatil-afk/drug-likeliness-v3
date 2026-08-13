@@ -3,6 +3,7 @@ from __future__ import annotations
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
+from sklearn.model_selection import StratifiedGroupKFold
 
 
 RANDOM_SEED = 20260813
@@ -12,7 +13,9 @@ def scaffold_from_smiles(smiles: str) -> str:
     molecule = Chem.MolFromSmiles(smiles)
 
     if molecule is None:
-        raise ValueError(f"Invalid SMILES: {smiles}")
+        raise ValueError(
+            f"Invalid SMILES: {smiles}"
+        )
 
     return MurckoScaffold.MurckoScaffoldSmiles(
         mol=molecule,
@@ -22,8 +25,12 @@ def scaffold_from_smiles(smiles: str) -> str:
 def scaffold_split(
     dataframe: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Split molecules by Bemis-Murcko scaffold."""
-    required = {"canonical_smiles", "label"}
+    """Create an approximately 80/10/10 scaffold-separated split."""
+
+    required = {
+        "canonical_smiles",
+        "label",
+    }
 
     missing = required - set(dataframe.columns)
 
@@ -39,46 +46,48 @@ def scaffold_split(
 
     dataframe = dataframe.copy()
 
-    dataframe["scaffold"] = dataframe[
-        "canonical_smiles"
-    ].map(scaffold_from_smiles)
-
-    groups = (
-        dataframe.groupby("scaffold", sort=True)
-        .indices
+    dataframe["scaffold"] = (
+        dataframe["canonical_smiles"]
+        .map(scaffold_from_smiles)
     )
 
-    scaffold_groups = list(groups.items())
+    splitter = StratifiedGroupKFold(
+        n_splits=10,
+        shuffle=True,
+        random_state=RANDOM_SEED,
+    )
 
-    # Deterministic ordering followed by deterministic shuffling.
-    import random
+    groups = dataframe["scaffold"]
 
-    rng = random.Random(RANDOM_SEED)
-    rng.shuffle(scaffold_groups)
+    folds = list(
+        splitter.split(
+            dataframe,
+            dataframe["label"],
+            groups,
+        )
+    )
 
-    total = len(dataframe)
+    # First fold -> validation
+    # Second fold -> test
+    validation_indices = folds[0][1]
+    test_indices = folds[1][1]
 
-    train_target = int(total * 0.80)
-    validation_target = int(total * 0.10)
+    validation_set = set(validation_indices)
+    test_set = set(test_indices)
 
-    train_indices = []
-    validation_indices = []
-    test_indices = []
-
-    for _, indices in scaffold_groups:
-        if len(train_indices) < train_target:
-            train_indices.extend(indices)
-        elif len(validation_indices) < validation_target:
-            validation_indices.extend(indices)
-        else:
-            test_indices.extend(indices)
+    train_indices = [
+        index
+        for index in dataframe.index
+        if index not in validation_set
+        and index not in test_set
+    ]
 
     train = dataframe.loc[train_indices].copy()
     validation = dataframe.loc[validation_indices].copy()
     test = dataframe.loc[test_indices].copy()
 
     return (
-        train.reset_index(drop=True),
-        validation.reset_index(drop=True),
-        test.reset_index(drop=True),
+        train.drop(columns=["scaffold"]).reset_index(drop=True),
+        validation.drop(columns=["scaffold"]).reset_index(drop=True),
+        test.drop(columns=["scaffold"]).reset_index(drop=True),
     )
