@@ -13,6 +13,7 @@ dependencies = [
     "pyyaml",
     "rdkit",
     "requests",
+    "scikit-learn",
 ]
 
 [tool.setuptools.packages.find]
