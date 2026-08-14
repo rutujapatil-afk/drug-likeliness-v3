@@ -1,0 +1,20 @@
+analysis,descriptor,source,n,mean,median,sd
+descriptor_source_distribution,molecular_weight,ChEBI,4098,506.5827497600586,408.5790000000002,418.71794008157894
+descriptor_source_distribution,molecular_weight,DrugCentral,4098,388.00074403250557,326.45250000000004,344.855438712673
+descriptor_source_distribution,heavy_atoms,ChEBI,4098,35.17179111761835,29.0,28.689023307675562
+descriptor_source_distribution,heavy_atoms,DrugCentral,4098,26.67154709614446,23.0,24.10294364204751
+descriptor_source_distribution,hbd,ChEBI,4098,4.429965836993656,2.0,7.49931898617055
+descriptor_source_distribution,hbd,DrugCentral,4098,2.370180575890678,1.0,5.127551391477378
+descriptor_source_distribution,hba,ChEBI,4098,8.637384089799902,6.0,11.464637746645627
+descriptor_source_distribution,hba,DrugCentral,4098,5.100048804294778,4.0,5.42881643063204
+descriptor_source_distribution,rotatable_bonds,ChEBI,4098,9.99243533430942,6.0,12.124957221531128
+descriptor_source_distribution,rotatable_bonds,DrugCentral,4098,6.234748657881894,4.0,10.861883604981298
+descriptor_source_distribution,rings,ChEBI,4098,2.904831625183016,3.0,2.5736353300842927
+descriptor_source_distribution,rings,DrugCentral,4098,2.730112249877989,3.0,1.8237914671600701
+descriptor_source_distribution,aromatic_rings,ChEBI,4098,1.0658857979502196,1.0,1.2642365590603255
+descriptor_source_distribution,aromatic_rings,DrugCentral,4098,1.5078086871644705,1.0,1.217824871692738
+descriptor_source_distribution,fraction_csp3,ChEBI,4098,0.5706446935973888,0.5789473684210527,0.2751333252629883
+descriptor_source_distribution,fraction_csp3,DrugCentral,4098,0.4501178999031357,0.4285714285714285,0.26033614789694254
+descriptor_source_distribution,logp,ChEBI,4098,1.1527547950219612,2.2960000000000003,6.662606037570786
+descriptor_source_distribution,logp,DrugCentral,4098,2.310547235236701,2.5734000000000004,2.94066011967606
+Morgan_source_classifier,Morgan fingerprints,DrugCentral_vs_ChEBI,8196,0.9032326831095934,0.8256466569058077,

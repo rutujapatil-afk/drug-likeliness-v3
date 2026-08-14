@@ -75,3 +75,7 @@ results/tables/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+
+# Python package build metadata
+src/*egg-info/

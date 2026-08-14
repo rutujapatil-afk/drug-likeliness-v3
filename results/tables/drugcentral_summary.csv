@@ -1,0 +1,2 @@
+source,records,valid_smiles,invalid_smiles,canonical_smiles,unique_canonical_smiles,duplicate_canonical_smiles
+DrugCentral,4099,4099,0,4099,4098,1

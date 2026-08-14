@@ -1,4 +1,0 @@
-pandas
-pyyaml
-rdkit
-requests
